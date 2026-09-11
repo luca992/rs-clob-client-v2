@@ -23,7 +23,9 @@ rust-version = "1.88.0" # MSRV
 all-features = true
 
 [features]
-default = []
+default = ["tls"]
+tls = ["reqwest/rustls", "alloy/reqwest-rustls-tls"]
+tls-no-provider = ["reqwest/rustls-no-provider"]
 clob = []
 data = []
 gamma = []
@@ -50,7 +52,6 @@ heartbeats = ["dep:tokio-util", "tokio/macros", "tokio/rt-multi-thread"]
 alloy = { version = "1.6.3", default-features = false, features = [
     "dyn-abi",
     "reqwest",
-    "reqwest-rustls-tls",
     "serde",
     "signer-local",
     "signers",
@@ -68,7 +69,7 @@ futures = "0.3.32"
 hmac = "0.12.1"
 phf = { version = "0.13.1", features = ["macros"] }
 rand = "0.10.0"
-reqwest = { version = "0.13.2", features = ["json", "query", "rustls"] }
+reqwest = { version = "0.13.2", default-features = false, features = ["json", "query"] }
 rust_decimal = { version = "1.41.0", features = ["serde"] }
 rust_decimal_macros = "1.40.0"
 secrecy = { version = "0.10", features = ["serde"] }
